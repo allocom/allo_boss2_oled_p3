@@ -637,25 +637,29 @@ def network1(ifname):
     global w_ip
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, \
-        struct.pack('256s', ifname[:15]))[20:24])
+        ip_address = socket.inet_ntoa(fcntl.ioctl(
+            s.fileno(),
+            0x8915,
+            struct.pack('256s', bytes(ifname[:15], 'utf-8'))
+        )[20:24])
     except :
         ip_address = ''
-    if(ifname == 'eth0'):
-        try :
-            ip_address = os.popen('ip addr show eth0').read().split("inet ")[1].split("/")[0]
-        except :
-            ip_address = ''
-        return ip_address
-    else:
-        #w_ip = ip_address
-        try:
-               ip_address = os.popen('ip addr show wlan0').read().split("inet ")[1].split("/")[0]
-        except :
-               ip_address = ''
+    if(ip_address == ''):
+        if(ifname == 'eth0'):
+            try :
+                ip_address = os.popen('ip addr show eth0').read().split("inet ")[1].split(" ")[0]
+            except :
+                ip_address = ''
+            return ip_address
+        else:
+            #w_ip = ip_address
+            try:
+                ip_address = os.popen('ip addr show wlan0').read().split("inet ")[1].split("/")[0]
+            except :
+                ip_address = ''
 
     return ip_address
-    
+
 
 def init_gpio():	
         GPIO.setwarnings(False)

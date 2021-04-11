@@ -31,7 +31,7 @@ def network1(ifname):
 #    print(f"Hostname: {hostname}")
     try:
         ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, \
-        struct.pack('256s', ifname[:15]))[20:24])
+        struct.pack('256s', bytes(ifname[:15], 'utf-8')))[20:24])
     except :
         ip_address = ''
     if(ifname == 'eth0'):
