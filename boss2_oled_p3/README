@@ -21,7 +21,7 @@ download boss2_oled_p3.tar.gz from the link using wget or scp
 
 	
 	cd /opt/
-	wget http://3.230.113.73:9011/Allocom/Boss2/boss2_oled_p3.tar.gz
+        wget https://raw.githubusercontent.com/allocom/allo_boss2_oled_p3/main/boss2_oled_p3.tar.gz	
 	tar -xzvf boss2_oled_p3.tar.gz
 	cd boss2_oled_p3
 	./install_boss2_oled.sh 
