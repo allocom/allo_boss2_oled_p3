@@ -1,0 +1,14 @@
+[Unit]
+Description=OLED BOSS2 (ROPIEEE)
+After=network-online.target syslog.target network.target sound.target
+
+[Service]
+User=root
+Group=root
+
+Type=simple
+ExecStart=/usr/sbin/python3 /opt/boss2_oled_p3/boss2_oled.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
