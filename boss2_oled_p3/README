@@ -43,6 +43,22 @@ apt-get -y install python3-pil          or       apt-get -y install python3-pill
 
 enable i2c manually or check $i2cdetect -y 1 working
 
+piCorePlayer v7.0.0 onwards :
+-----------------------------
+Resize FS on webGUI
+ ssh login with user tc Password piCore
+ tce-load -wi python3.8-Pillow.tcz
+ tce-load -wi python3.8-smbus.tcz
+ tce-load -wi python3.8-rpi-gpio.tcz
+ tce-load -wi  iproute2.tcz
+
+	sudo su
+	cd /opt/
+	wget https://raw.githubusercontent.com/allocom/allo_boss2_oled_p3/main/boss2_oled_p3.tar.gz
+        tar -xzvf boss2_oled_p3.tar.gz
+on web GUI Tweaks page user commands type below line and save
+	sh /opt/boss2_oled_p3/oled_run.sh 
+
 
 
 Disable the startup service steps on each OS:

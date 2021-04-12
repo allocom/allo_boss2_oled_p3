@@ -15,4 +15,5 @@ tar -zxvf boss2_oled_p3.tar.gz
 
 cd boss2_oled_p3
 
+refer : https://github.com/allocom/allo_boss2_oled_p3/blob/main/boss2_oled_p3/README
 
