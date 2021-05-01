@@ -5,14 +5,27 @@
 # #######
 import os
 import mmap
-import platform
+import struct
 
-machine_version = platform.machine()
-if (machine_version == "armv7l") or (machine_version == "armv7") :
-	BCM2708_PERI_BASE=0x20000000
+def get_dt_ranges(filename, offset):
+	f = open(filename , "rb")
+	f.seek(offset,1)
+	data = f.read(4)
+	buf = struct.unpack('BBBB', data)
+	address = buf[0]<<24 | buf[1]<<16 | buf[2]<<8 | buf[3]<<0
+	f.close()
+	return address
 
-if machine_version == "aarch64" :
-	BCM2708_PERI_BASE=0xFE000000
+def bcm_host_get_peripheral_address():
+	addr = get_dt_ranges("/proc/device-tree/soc/ranges", 4)
+	if addr == 0:
+		addr = get_dt_ranges("/proc/device-tree/soc/ranges", 8)
+	if addr == 0:
+		return 0x20000000
+	else:
+		return addr
+
+BCM2708_PERI_BASE = bcm_host_get_peripheral_address()
 
 GPIO_BASE=(BCM2708_PERI_BASE + 0x00200000)
 BLOCK_SIZE=4096
