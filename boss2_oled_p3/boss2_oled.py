@@ -57,8 +57,8 @@ rst = 12
 #rst = 32
 
 h_name = "Allo"
-h_ip = "192.168.10.121"
-w_ip = "WL:192.168.211.1"
+h_ip = ""
+w_ip = ""
 a_card = "Boss2"
 a_card1 = "BOSS2"
 indx = 0
@@ -645,19 +645,6 @@ def network1(ifname):
 		)[20:24])
 	except :
 		ip_address = ''
-	if(ip_address == ''):
-		if(ifname == 'eth0'):
-			try :
-				ip_address = os.popen('ip addr show eth0').read().split("inet ")[1].split(" ")[0]
-			except :
-				ip_address = ''
-			return ip_address
-		else:
-			#w_ip = ip_address
-			try:
-				ip_address = os.popen('ip addr show wlan0').read().split("inet ")[1].split("/")[0]
-			except :
-				ip_address = ''
 
 	return ip_address
 
@@ -745,8 +732,10 @@ def main(IRenabled):
 
 	h_ip = network1('eth0')
 	w_ip = network1('wlan0')
-	lcd.displayStringNumber(h_ip,0,0)
-	lcd.displayStringNumber(w_ip,6,0)
+	if h_ip != '':
+		lcd.displayStringNumber(h_ip,0,0)
+	if w_ip != '':
+		lcd.displayStringNumber(w_ip,6,0)
 	h_name = "HOST:%s" % socket.gethostname()
 	lcd.displayString(h_name,2,0)
 	lcd.displayString(a_card1,4,0)
