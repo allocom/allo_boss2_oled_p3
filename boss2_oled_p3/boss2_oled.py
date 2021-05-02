@@ -682,7 +682,7 @@ def init_gpio_bcm():
 	GPIO.setup(irPin,GPIO.IN)
 	time.sleep(0.1)
 
-def main():
+def main(IRenabled):
 	global m_indx
 	global h_ip
 	global w_ip
@@ -751,11 +751,14 @@ def main():
 	init_gpio_bcm()
 	scr0_ref_count = 0
 	card_num = getCardNumber()
-	ir = IRModule.IRRemote(callback='DECODE')
-	GPIO.add_event_detect(irPin,GPIO.BOTH,callback=ir.pWidth)
-	ir.set_callback(remote_callback)
 	timer1 = time.time()
 	timerButton1 = time.time()
+
+	if IRenabled:
+		ir = IRModule.IRRemote(callback='DECODE')
+		GPIO.add_event_detect(irPin,GPIO.BOTH,callback=ir.pWidth)
+		ir.set_callback(remote_callback)
+
 #    try :
 	screenVol()
 	getMuteStatus(ma_ctrl)
@@ -1082,9 +1085,10 @@ def main():
 				sec_flag = 0
 		led_off_counter += 1
 #    except:
-	ir.remove_callback()
+	if IRenabled:
+		ir.remove_callback()
+		GPIO.cleanup(irPin)
 	print ("exit")
-	GPIO.cleanup(irPin)
 	GPIO.cleanup(sw1)
 	GPIO.cleanup(sw2)
 	GPIO.cleanup(sw3)
@@ -1092,5 +1096,20 @@ def main():
 	GPIO.cleanup(sw4)
 	GPIO.cleanup(sw5)
 
+def usage():
+	print("Usage: %s" % __file__)
+	print('       --noir:    Do not use ir remote functionality')
+	print('')
+	sys.exit(1)
+
+
 if __name__ == "__main__":
-	main()
+	ir_en = True
+
+	for arg in sys.argv:
+		if any( x in arg for x in ["-h", "--help"]):
+			usage()
+		if '--noir' in arg:
+			ir_en = False
+
+	main(ir_en)
