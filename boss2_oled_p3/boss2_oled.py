@@ -38,6 +38,8 @@ from Hardware.SH1106.SH1106FontLib import *
 from Hardware.I2CConfig import *
 import IRModule
 
+BASEDIR = os.path.dirname(os.path.abspath(__file__))
+PCPIMG = BASEDIR + '/pcp.bmp'
 
 irPin = 16
 sw1 = 14
@@ -730,6 +732,17 @@ def main(IRenabled):
 	led_off_counter = 1
 	i2cConfig()
 	lcd = SH1106LCD()
+	
+	try:
+		f = open(PCPIMG, 'r')
+		if f is not None:
+			f.close()
+			lcd.displayImage(PCPIMG, 0, 0)
+			time.sleep(5)
+			lcd.clearScreen()
+	except:
+		print("Error opening " + PCPIMG)
+
 	h_ip = network1('eth0')
 	w_ip = network1('wlan0')
 	lcd.displayStringNumber(h_ip,0,0)
