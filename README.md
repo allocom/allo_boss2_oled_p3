@@ -2,18 +2,12 @@
 
 This python application code is modified for working with python3
 
-some of thhe OS python3 by default available, remaining smbus,pil and Rpi.gpio packages need to install manually
+Dependancies:
+Python3
+Python3-smbus
+Python3-Pillow
+Python3-Rpi.gpio
 
-
-ssh login 
-
-cd /opt/
-
-wget https://raw.githubusercontent.com/allocom/allo_boss2_oled_p3/main/boss2_oled_p3.tar.gz
-
-tar -zxvf boss2_oled_p3.tar.gz
-
-cd boss2_oled_p3
+Packaged for pCP:  pcp-load -wi allo_boss2_old.tcz
 
 refer : https://github.com/allocom/allo_boss2_oled_p3/blob/main/boss2_oled_p3/README
-
