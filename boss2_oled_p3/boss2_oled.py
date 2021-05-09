@@ -33,10 +33,10 @@ import fcntl
 import struct
 from datetime import datetime
 from threading import Thread
-from Hardware.SH1106.SH1106LCD import *
-from Hardware.SH1106.SH1106FontLib import *
-from Hardware.I2CConfig import *
-import IRModule
+from Boss2_Hardware.SH1106.SH1106LCD import *
+from Boss2_Hardware.SH1106.SH1106FontLib import *
+from Boss2_Hardware.I2CConfig import *
+from Boss2_Hardware import IRModule
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 PCPIMG = BASEDIR + '/pcp.bmp'
