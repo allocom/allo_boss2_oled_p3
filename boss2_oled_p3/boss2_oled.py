@@ -39,7 +39,7 @@ from Boss2_Hardware.I2CConfig import *
 from Boss2_Hardware import IRModule
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-PCPIMG = BASEDIR + '/pcp.bmp'
+PCPIMG = '/usr/local/share/allo-boss2/pcp.bmp'
 
 irPin = 16
 sw1 = 14
@@ -48,13 +48,6 @@ sw3 = 23
 sw4 = 8
 sw5 = 24
 rst = 12
-#irPin = 36
-#sw1 = 8
-#sw2 = 10
-#sw3 = 16
-#sw4 = 24
-#sw5 = 18
-#rst = 32
 
 h_name = "Allo"
 h_ip = ""
