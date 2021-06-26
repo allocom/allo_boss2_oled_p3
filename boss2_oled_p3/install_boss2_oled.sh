@@ -122,10 +122,9 @@ then
                 echo "******************************************"
                 sudo apt-get -y update
                 sudo apt-get -y install python3-rpi.gpio
-                sudo apt-get -y install python3-pip
                 sudo apt-get -y install python3-smbus
                 sudo apt-get -y install python3-pil
-		udo apt-get -y install raspi-config
+		sudo apt-get -y install raspi-config
                 sudo apt-get -y install i2c-tools
                 sleep 2
                 sudo raspi-config nonint do_i2c 0
@@ -158,7 +157,6 @@ then
 		echo "******************************************"
 		sudo apt-get -y update 
                 sudo apt-get -y install python3-rpi.gpio
-		sudo apt-get -y install python3-pip
 		sudo apt-get -y install python3-smbus 
 		sudo apt-get -y install python3-pil 
 		#sudo apt-get -y install python-netifaces 
