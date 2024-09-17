@@ -265,7 +265,7 @@ class SH1106LCD():
 
     """
     def chunks(self, l, chunkSize):
-        for i in xrange(0, len(l), chunkSize):
+        for i in range(0, len(l), chunkSize):
             yield l[i:i+chunkSize]
 
 
@@ -449,7 +449,7 @@ class SH1106LCD():
 
 
     def __chunks(self, inList, chunkSize):
-        for i in xrange(0, len(inList), chunkSize):
+        for i in range(0, len(inList), chunkSize):
             yield inList[i:i+chunkSize]
 
 
@@ -523,17 +523,17 @@ class SH1106LCD():
                 #Convert width x height array to
 
 
-                for i in range(height/8):
+                for i in range(int(height/8)):
                     temp = []
                     for j in range(width):
-                        bit0 = (matrix[i*8][j] / 255)
-                        bit1 = 2 * (matrix[i*8 + 1][j] / 255)
-                        bit2 = 4 * (matrix[i*8 + 2][j] / 255)
-                        bit3 = 8 * (matrix[i*8 + 3][j] / 255)
-                        bit4 = 16 * (matrix[i*8 + 4][j] / 255)
-                        bit5 = 32 * (matrix[i*8 + 5][j] / 255)
-                        bit6 = 64 * (matrix[i*8 + 6][j] / 255)
-                        bit7 = 128 * (matrix[i*8 + 7][j] / 255)
+                        bit0 = int(matrix[i*8][j] / 255)
+                        bit1 = int(2 * (matrix[i*8 + 1][j] / 255))
+                        bit2 = int(4 * (matrix[i*8 + 2][j] / 255))
+                        bit3 = int(8 * (matrix[i*8 + 3][j] / 255))
+                        bit4 = int(16 * (matrix[i*8 + 4][j] / 255))
+                        bit5 = int(32 * (matrix[i*8 + 5][j] / 255))
+                        bit6 = int(64 * (matrix[i*8 + 6][j] / 255))
+                        bit7 = int(128 * (matrix[i*8 + 7][j] / 255))
                         temp.append(bit0 + bit1 + bit2 + bit3 + bit4 + bit5 + bit6 + bit7)
                     output.append(temp)
 
